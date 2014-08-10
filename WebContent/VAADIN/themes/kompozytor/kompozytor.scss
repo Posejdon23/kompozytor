@@ -1,0 +1,350 @@
+@import "../reindeer/reindeer.scss";
+
+@mixin kompozytor { 
+
+@include reindeer; 
+
+.mainLayout {
+	/* 	background:url('../img/grassbackOp.jpg'); */
+	/* 	background-repeat: repeat-x; */
+	/* 	height: 1080px; */
+	
+}
+
+.musicFont {
+	font-size: 32px;
+}
+
+/* * { */
+/* 	font-weight: normal; */
+/* 	-webkit-box-sizing: border-box; */
+/* 	-moz-box-sizing: border-box; */
+/* 	-ms-box-sizing: border-box; */
+/* 	box-sizing: border-box; */
+/* 	font-size: 14px; */
+/* 	font-weight: normal; */
+/* 	-webkit-box-sizing: border-box; */
+/* } */
+
+.pic {
+	border: 10px solid #fff;
+	float: left;
+	height: 300px;
+	width: 300px;
+	margin: 20px;
+	overflow: hidden;
+	-webkit-box-shadow: 5px 5px 5px #111;
+	box-shadow: 5px 5px 5px #111;
+}
+
+
+.v-caption-errorRed {
+	font-family: snacker;
+	font-size: 20px;
+	font-weight: normal;
+	height: 40px;
+	line-height: 50px;
+	color: #ff0000;;
+}
+
+.menuClear {
+	cursor: pointer;
+	-moz-box-shadow: inset 0px 0px 50px -1px #8b9dc3;
+	-webkit-box-shadow: inset 0px 0px 50px -1px #8b9dc3;
+	box-shadow: inset 0px 0px 50px -1px #8b9dc3;
+	background-color: #8b9dc3;
+	/* 	-webkit-border-top-left-radius: 13px; */
+	/* 	-moz-border-radius-topleft: 13px; */
+	/* 	border-top-left-radius: 13px; */
+	/* 	-webkit-border-top-right-radius: 13px; */
+	/* 	-moz-border-radius-topright: 13px; */
+	/* 	border-top-right-radius: 13px; */
+	color: #8b9dc3;
+	font-family: Arial;
+	font-size: 20px;
+	text-decoration: blink;
+	height: 30px;
+	line-height: 30px;
+	font-weight: normal;
+	font-style: normal;
+	text-align: center;
+	text-shadow: 2px 2px 8px #8b9dc3;
+}
+
+.menuClear:hover {
+	background-color: #3b5998;
+}
+
+.menuClear:active {
+	position: relative;
+	top: 1px;
+}
+
+.menuSelected {
+	cursor: pointer;
+	-moz-box-shadow: inset 0px 0px 50px -1px #8b9dc3;
+	-webkit-box-shadow: inset 0px 0px 50px -1px #8b9dc3;
+	box-shadow: inset 0px 0px 50px -1px #8b9dc3;
+	background-color: #3b5998;
+	/* 	-webkit-border-top-left-radius: 13px; */
+	/* 	-moz-border-radius-topleft: 13px; */
+	/* 	border-top-left-radius: 13px; */
+	/* 	-webkit-border-top-right-radius: 13px; */
+	/* 	-moz-border-radius-topright: 13px; */
+	/* 	border-top-right-radius: 13px; */
+	color: #8b9dc3;
+	font-family: Arial;
+	font-size: 20px;
+	height: 30px;
+	line-height: 30px;
+	font-weight: normal;
+	font-style: normal;
+	text-align: center;
+	text-shadow: 2px 2px 8px #8b9dc3;
+}
+
+.menuSelected .v-button-caption {
+	color: #f7f7f7;
+}
+
+.readMore {
+	cursor: pointer;
+	-moz-box-shadow: inset 0px 0px 50px -1px #8b9dc3;
+	-webkit-box-shadow: inset 0px 0px 50px -1px #8b9dc3;
+	box-shadow: inset 0px 0px 50px -1px #8b9dc3;
+	background-color: #3b5998;
+	/* 	-webkit-border-bottom-left-radius: 13px; */
+	/* 	-moz-border-radius-bottomleft: 13px; */
+	/* 	border-bottom-left-radius: 13px; */
+	/* 	-webkit-border-bottom-right-radius: 13px; */
+	/* 	-moz-border-radius-bottomright: 13px; */
+	/* 	border-bottom-right-radius: 13px; */
+	color: #8b9dc3;
+	font-family: Arial;
+	font-size: 20px;
+	height: 30px;
+	line-height: 30px;
+	font-weight: normal;
+	font-style: normal;
+	text-align: center;
+	text-shadow: 2px 2px 8px #f7f7f7;
+}
+
+.articleDashLine {
+	border-bottom-style: dashed;
+	border-bottom-color: #3b5998;
+	border-bottom-width: 2px;
+}
+
+/* .v-icon { */
+/* 	transition-duration: 2s; */
+/* 	transition-timing-function: ease; */
+/* 	-webkit-margin-before: 0px; */
+/* 	-webkit-margin-after: 0px; */
+/* 	-webkit-margin-start: 40px; */
+/* 	-webkit-margin-end: 0px; */
+/* } */
+
+/* .v-icon:hover { */
+/* 	transition-duration: 2s; */
+/* 	transition-timing-function: ease; */
+/* 	-webkit-margin-before: 0px; */
+/* 	-webkit-margin-after: 0px; */
+/* 	-webkit-margin-start: 0px; */
+/* 	-webkit-margin-end: 40px; */
+/* } */
+.readMore .v-button-caption {
+	color: #f7f7f7;
+}
+
+.menuClear .v-button-caption {
+	cursor: pointer;
+	font-size: 20px;
+	color: #000000;
+	text-shadow: 2px 2px 8px #0a0a0a;
+}
+
+.menuClear .v-button-caption:hover {
+	font-size: 20px;
+	color: #f7f7f7;
+	text-shadow: 2px 2px 8px #f7f7f7;
+}
+
+.signButtons {
+	background-image: none !important;
+	font-size: 15px;
+	color: black;
+	background-color: rgba(255, 255, 255, 0);
+}
+
+.signButtons:hover {
+	text-decoration: underline;
+}
+
+.v-button-menuSelected:hover {
+	font-size: 20px;
+	color: #f7f7f7;
+	text-shadow: 2px 2px 8px #f7f7f7;
+}
+
+.tilt {
+	-webkit-transition: all 0.35s ease;
+	-moz-transition: all 0.35s ease;
+	-o-transition: all 0.35s ease;
+	-ms-transition: all 0.35s ease;
+	transition: all 0.35s ease;
+}
+
+.tilt:hover {
+	-webkit-transform: rotate(-10deg);
+	-moz-transform: rotate(-10deg);
+	-o-transform: rotate(-10deg);
+	-ms-transform: rotate(-10deg);
+	transform: rotate(-10deg);
+}
+
+/* .v-button-caption { */
+/* 	cursor: pointer; */
+/* 	font-size: 20px; */
+/* 	color: #0a0a0a; */
+/* 	text-shadow: 2px 2px 8px #0a0a0a; */
+/* } */
+
+/* .v-button-caption:hover { */
+/* 	font-size: 20px; */
+/* 	color: #0a0a0a; */
+/* 	text-shadow: 2px 2px 8px #f7f7f7; */
+/* } */
+
+/* .v-button:focus { */
+/* 	background-image: none !important; */
+/* } */
+
+/* .v-button:focus .v-button-wrap { */
+/* 	background-image: none !important; */
+/* } */
+
+/* .v-button:active,.v-button.v-pressed { */
+/* 	background-image: none !important; */
+/* } */
+
+/* .v-button:active .v-button-wrap,.v-button.v-pressed .v-button-wrap { */
+/* 	background-image: none !important; */
+/* } */
+
+/* .v-button,.v-disabled.v-button { */
+/* 	background-image: none !important; */
+/* } */
+
+/* .v-button-wrap,.v-disabled.v-button .v-button-wrap { */
+/* 	background-image: none !important; */
+/* } */
+
+/* .v-button-primary:focus { */
+/* 	background-image: none !important; */
+/* } */
+
+/* .v-button-primary:focus .v-button-wrap { */
+/* 	background-image: none !important; */
+/* } */
+
+/* .v-button-primary:active,.v-button-primary.v-pressed { */
+/* 	background-image: none !important; */
+/* } */
+
+/* .v-button-primary:active .v-button-wrap,.v-button-primary.v-pressed .v-button-wrap */
+/* 	{ */
+/* 	background-image: none !important; */
+/* } */
+
+/* .v-button-primary,.v-disabled.v-button-primary { */
+/* 	background-image: none !important; */
+/* } */
+
+/* .v-button-primary .v-button-wrap,.v-disabled.v-button-primary .v-button-wrap */
+/* 	{ */
+/* 	background-image: none !important; */
+/* } */
+
+/* .v-button-primary:focus { */
+/* 	background-image: none !important; */
+/* } */
+
+/* .v-button-primary:focus .v-button-wrap { */
+/* 	background-image: none !important; */
+/* } */
+
+/* .v-button-primary:active,.v-button-primary.v-pressed { */
+/* 	background-image: none !important; */
+/* } */
+
+/* .v-button-primary:active .v-button-wrap,.v-button-primary.v-pressed .v-button-wrap */
+/* 	{ */
+/* 	background-image: none !important; */
+/* } */
+
+/* .v-button-primary,.v-disabled.v-button-primary { */
+/* 	background-image: none !important; */
+/* } */
+
+/* .v-button-primary .v-button-wrap,.v-disabled.v-button-primary .v-button-wrap */
+/* 	{ */
+/* 	background-image: none !important; */
+/* } */
+
+/* .v-button-small:focus { */
+/* 	background-image: none !important; */
+/* } */
+
+/* .v-button-small:focus .v-button-wrap { */
+/* 	background-image: none !important; */
+/* } */
+
+/* .v-button-small:active,.v-button-small.v-pressed { */
+/* 	background-image: none !important; */
+/* } */
+
+/* .v-button-small:active .v-button-wrap,.v-button-small.v-pressed .v-button-wrap */
+/* 	{ */
+/* 	background-image: none !important; */
+/* } */
+
+/* .v-button-small,.v-disabled.v-button-small { */
+/* 	background-image: none !important; */
+/* } */
+
+/* .v-button-small .v-button-wrap,.v-disabled.v-button-small .v-button-wrap */
+/* 	{ */
+/* 	background-image: none !important; */
+/* } */
+
+/* .v-button-small { */
+/* 	background-image: none !important; */
+/* } */
+
+/* .v-button-small:focus { */
+/* 	background-image: none !important; */
+/* } */
+
+/* .v-button-small:focus .v-button-wrap { */
+/* 	background-image: none !important; */
+/* } */
+
+/* .v-button-small:active,.v-button-small.v-pressed { */
+/* 	background-image: none !important; */
+/* } */
+
+/* .v-button-small:active .v-button-wrap,.v-button-small.v-pressed .v-button-wrap */
+/* 	{ */
+/* 	background-image: none !important; */
+/* } */
+
+/* .v-button-small,.v-disabled.v-button-small { */
+/* 	background-image: none !important; */
+/* } */
+
+/* .v-button-small .v-button-wrap,.v-disabled.v-button-small .v-button-wrap */
+/* 	{ */
+/* 	background-image: none !important; */
+/* } */
+}
