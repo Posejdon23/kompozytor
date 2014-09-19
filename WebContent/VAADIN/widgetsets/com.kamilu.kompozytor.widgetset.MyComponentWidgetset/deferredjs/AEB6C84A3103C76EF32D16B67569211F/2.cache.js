@@ -1,0 +1,1 @@
+$wnd.com_kamilu_kompozytor_widgetset_MyComponentWidgetset.runAsyncCallback2('mdb(1545,1,rsd);_.Tc=function _5b(){sVb((!mVb&&(mVb=new tVb),mVb),this.b.e)};Hmd(bk)(2);\n//# sourceURL=com.kamilu.kompozytor.widgetset.MyComponentWidgetset-2.js\n')
