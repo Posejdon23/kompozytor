@@ -6,7 +6,6 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
 import com.google.common.collect.ImmutableList;
 import com.kamilu.kompozytor.DataStoreWrapper;
-import com.kamilu.kompozytor.drawers.SongDrawer;
 import com.kamilu.kompozytor.entities.Song;
 import com.kamilu.kompozytor.entities.Voice;
 import com.kamilu.kompozytor.propenums.Instrument;
@@ -26,9 +25,8 @@ public class VoiceMenu extends VerticalLayout {
 	private final ComboBox number;
 	private final TextField name;
 	private final Table voices;
-	private final HorizontalLayout topMenu;
 
-	public VoiceMenu(Song song, SongDrawer songDrawer) {
+	public VoiceMenu(Song song) {
 		name = new TextField("Nazwa");
 		instrument = new ComboBox("Instrument", Arrays.asList(Instrument
 				.values()));
@@ -41,8 +39,7 @@ public class VoiceMenu extends VerticalLayout {
 				.build();
 		voices.setSizeFull();
 		voices.setCaption("Lista g³osów");
-		topMenu = new HorizontalLayout(name, instrument, number);
-		addComponents(topMenu, voices);
+		addComponents(name, instrument, number, voices);
 		setComponentAlignment(voices, Alignment.TOP_CENTER);
 	}
 

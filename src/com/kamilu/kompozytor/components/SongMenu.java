@@ -1,18 +1,18 @@
 package com.kamilu.kompozytor.components;
 
-import com.kamilu.kompozytor.drawers.SongDrawer;
 import com.kamilu.kompozytor.entities.Song;
 import com.vaadin.event.FieldEvents.BlurEvent;
 import com.vaadin.event.FieldEvents.BlurListener;
-import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.TextField;
+import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.HasComponents.ComponentAttachEvent;
 
-public class SongMenu extends HorizontalLayout {
+public class SongMenu extends VerticalLayout {
 
 	private static final long serialVersionUID = 1L;
-	private final TextField songName, songAuthor;
+	private TextField songName, songAuthor;
 
-	public SongMenu(Song song, SongDrawer songDrawer) {
+	public SongMenu(final Song song) {
 		songName = new TextField("Nazwa utworu");
 		songName.setValue(song.getName());
 		songAuthor = new TextField("Autor utworu");
@@ -21,6 +21,7 @@ public class SongMenu extends HorizontalLayout {
 		songAuthor.addBlurListener(new ChangeAuthor(song));
 		addComponents(songName, songAuthor);
 	}
+	
 
 	private final class ChangeName implements BlurListener {
 

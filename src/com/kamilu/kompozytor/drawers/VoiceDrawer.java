@@ -1,44 +1,22 @@
 package com.kamilu.kompozytor.drawers;
 
-import java.util.List;
-
-import org.vaadin.hezamu.canvas.Canvas;
-
 import com.kamilu.kompozytor.entities.Voice;
+import com.kamilu.kompozytor.mycomponent.DrawingCanvas;
 
 @SuppressWarnings("serial")
 public class VoiceDrawer implements Drawer {
 
-	private final Canvas canvas;
-	private final TactDrawer tactDrawer;
+	private final DrawingCanvas canvas;
 	private final DrawCursor cursor;
 
-	public VoiceDrawer(Canvas canvas, DrawCursor cursor) {
-		this.canvas = canvas;
+	public VoiceDrawer(DrawCursor cursor) {
 		this.cursor = cursor;
-		tactDrawer = new TactDrawer(canvas, cursor);
+		this.canvas = cursor.getCanvas();
 	}
 
-	public void drawVoices(List<Voice> voices) {
-
-		for (Voice track : voices) {
-			tactDrawer.drawTacts(track.getTacts());
-		}
-	}
-
-	public int getTactNumber(float mouseX, float mouseY) {
-		return tactDrawer.getTactNumber(mouseX, mouseY);
-	}
-
-	public TactField getTactField(float xPos, float yPos) {
-		return tactDrawer.getTactField(xPos, yPos);
-	}
-
-	public int getNoteNumber(int mouseX, int mouseY) {
-		return tactDrawer.getNoteNumber(mouseX, mouseY);
-	}
-
-	public NoteField getNoteField(float xPos, float yPos) {
-		return tactDrawer.getNoteField(xPos, yPos);
+	public void drawVoice(Voice voice) {
+		cursor.drawStave();
+		// canvas.fillText(voice.getInstrument().name() + voice.getNumber(), 50,
+		// 50, 100);
 	}
 }

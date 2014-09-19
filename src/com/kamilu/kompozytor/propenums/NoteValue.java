@@ -1,12 +1,12 @@
 package com.kamilu.kompozytor.propenums;
 
 public enum NoteValue {
-	WholeNote(100d, "http://s8.tinypic.com/vpu4ug_th.jpg",
+	WholeNote(100d, "http://oi58.tinypic.com/3464aw3.jpg",
 			"http://s8.tinypic.com/10ckl1h_th.jpg"), //
 	HalfNote(50d, "http://s8.tinypic.com/2i27s6a_th.jpg",
 			"http://s8.tinypic.com/ouoc52_th.jpg"), //
-	QuarterNote(25d, "http://s8.tinypic.com/14j2k2v_th.jpg", ""), //
-	EighthNote(12.5, "http://s8.tinypic.com/qs1uuv_th.jpg", ""), //
+	QuarterNote(25d, "http://oi58.tinypic.com/svgry8.jpg", "http://oi57.tinypic.com/a9y2jq.jpg"), //
+	EighthNote(12.5, "http://s8.tinypic.com/qs1uuv_th.jpg", "http://oi59.tinypic.com/x1ynw0.jpg"), //
 	SixteenthNote(6.25d, "", ""), //
 	ThirtySecondNote(3.125d, "", ""), //
 	SixtyFourthNote(1.5625, "", "");//

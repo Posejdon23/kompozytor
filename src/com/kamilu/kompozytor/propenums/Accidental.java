@@ -1,18 +1,18 @@
 package com.kamilu.kompozytor.propenums;
 
 public enum Accidental {
-	Brak(""), Krzyzyk("http://s8.tinypic.com/aau0p3_th.jpg"), Bemol(
-			"http://s8.tinypic.com/11ay70l_th.jpg"), PodwojnyKrzyzyk(
-			"../notes/krzyzyk.png"), PodwojnyBemol("../notes/bemol.png");
+	Sharp("http://s8.tinypic.com/aau0p3_th.jpg"), Flat(
+			"http://s8.tinypic.com/11ay70l_th.jpg"), Natural(
+			"http://oi57.tinypic.com/hwlbih.jpg");
 
-	private final String url;
+	private final String imageUrl;
 
-	Accidental(String url) {
-		this.url = url;
+	Accidental(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 	public String getUrl() {
-		return url;
+		return imageUrl;
 	}
 
 }

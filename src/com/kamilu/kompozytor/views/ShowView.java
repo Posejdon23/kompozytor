@@ -4,11 +4,10 @@ import static com.vaadin.ui.Alignment.*;
 
 import com.google.appengine.api.datastore.Entity;
 import com.kamilu.kompozytor.DataStoreWrapper;
-import com.kamilu.kompozytor.drawers.SongDrawer;
+import com.kamilu.kompozytor.components.CompositorEditor;
 import com.kamilu.kompozytor.entities.Song;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.ui.Alignment;
 import com.vaadin.ui.VerticalLayout;
 
 @SuppressWarnings("serial")
@@ -22,13 +21,13 @@ public class ShowView extends VerticalLayout implements View {
 	public void enter(ViewChangeEvent event) {
 		String parameter = event.getParameters();
 		long articleId = Long.parseLong(parameter);
-		SongDrawer utworDrawer = new SongDrawer();
-		Entity utworEntity = DataStoreWrapper.getById(Song.KIND, articleId);
-		Song utwor = new Song(utworEntity);
+		Entity songEntity = DataStoreWrapper.getById(Song.KIND, articleId);
+		Song song = new Song(songEntity);
+		CompositorEditor compositor = new CompositorEditor(song);
 		removeAllComponents();
-		addComponent(utworDrawer);
-		setComponentAlignment(utworDrawer, TOP_CENTER);
-		utworDrawer.drawSong(utwor);
+		addComponent(compositor);
+		setComponentAlignment(compositor, TOP_CENTER);
+		compositor.drawSong();
 	}
 
 }

@@ -1,19 +1,27 @@
 package com.kamilu.kompozytor.drawers;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 @SuppressWarnings("serial")
 public class TactField implements Serializable {
 	private float start, end, yCenter;
-	private Map<NoteField, Integer> noteFields;
+	private List<NoteField> noteFields;
+	private int orderNumber;
 
-	public TactField(float start, float end, float yCenter) {
-		noteFields = new HashMap<>();
+	public TactField(float start, float end, float yCenter, int orderNumber) {
 		this.start = start;
 		this.end = end;
 		this.yCenter = yCenter;
+		this.orderNumber = orderNumber;
+	}
+
+	public int getOrderNumber() {
+		return orderNumber;
+	}
+
+	public void setOrderNumber(int orderNumber) {
+		this.orderNumber = orderNumber;
 	}
 
 	public float getYCenter() {
@@ -40,12 +48,12 @@ public class TactField implements Serializable {
 		return end;
 	}
 
-	public void addNoteFields(Map<NoteField, Integer> noteFields) {
+	public void setNoteFields(List<NoteField> noteFields) {
 		if (noteFields != null && !noteFields.isEmpty())
-			this.noteFields.putAll(noteFields);
+			this.noteFields = noteFields;
 	}
 
-	public Map<NoteField, Integer> getNoteFields() {
+	public List<NoteField> getNoteFields() {
 		return noteFields;
 	}
 

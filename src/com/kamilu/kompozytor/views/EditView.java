@@ -4,7 +4,7 @@ import static com.vaadin.ui.Alignment.*;
 
 import com.google.appengine.api.datastore.Entity;
 import com.kamilu.kompozytor.DataStoreWrapper;
-import com.kamilu.kompozytor.components.Kompozytor;
+import com.kamilu.kompozytor.components.CompositorEditor;
 import com.kamilu.kompozytor.entities.Song;
 import com.kamilu.kompozytor.utils.SongFactory;
 import com.vaadin.navigator.View;
@@ -22,7 +22,7 @@ public class EditView extends VerticalLayout implements View {
 	private Button create;
 	private Button cancel;
 	private HorizontalLayout butLay;
-	private Kompozytor createSong;
+	private CompositorEditor editor;
 
 	public EditView() {
 		name = new TextField("Nazwa");
@@ -30,7 +30,7 @@ public class EditView extends VerticalLayout implements View {
 		create = new Button("Stwórz");
 		cancel = new Button("Anuluj");
 		butLay = new HorizontalLayout(create, cancel);
-		prepareListners();
+		prepareListeners();
 	}
 
 	@Override
@@ -43,9 +43,10 @@ public class EditView extends VerticalLayout implements View {
 			Song song = new Song(songEntity);
 			song.setName(name.getValue());
 			song.setAuthor(author.getValue());
-			createSong = new Kompozytor(song);
-			addComponent(createSong);
-			setComponentAlignment(createSong, Alignment.MIDDLE_CENTER);
+			editor = new CompositorEditor(song);
+			addComponent(editor);
+			setComponentAlignment(editor, Alignment.MIDDLE_CENTER);
+			editor.drawSong();
 		} else {
 			addComponents(name, author, butLay);
 			setComponentAlignment(name, MIDDLE_CENTER);
@@ -54,12 +55,12 @@ public class EditView extends VerticalLayout implements View {
 		}
 	}
 
-	private void prepareListners() {
+	private void prepareListeners() {
 		create.addClickListener(new ClickListener() {
 			@Override
 			public void buttonClick(ClickEvent event) {
 				removeAllComponents();
-				Song song = SongFactory.createNewUtwor(name.getValue(),
+				Song song = SongFactory.createNewSong(name.getValue(),
 						author.getValue());
 				getUI().getNavigator().navigateTo(
 						VIEW + "/" + song.getKey().getId());

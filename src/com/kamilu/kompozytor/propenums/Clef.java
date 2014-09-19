@@ -1,22 +1,22 @@
 package com.kamilu.kompozytor.propenums;
 
 public enum Clef {
-	Wiolinowy("http://oi58.tinypic.com/2vla0it.jpg", 60), Basowy(
+	Violin("http://oi58.tinypic.com/2vla0it.jpg", 60), Bass(
 			"http://s8.tinypic.com/34ef57c_th.jpg", 18);
 
 	private final String url;
-	private final int wysokosc;
+	private final int height;
 
-	private Clef(String url, int wysokosc) {
+	private Clef(String url, int height) {
 		this.url = url;
-		this.wysokosc = wysokosc;
+		this.height = height;
 	}
 
 	public String getUrl() {
 		return url;
 	}
 
-	public int getWysokosc() {
-		return wysokosc;
+	public int getHeight() {
+		return height;
 	}
 }

@@ -1,47 +1,46 @@
 package com.kamilu.kompozytor.propenums;
 
-import static com.kamilu.kompozytor.propenums.Accidental.Bemol;
-import static com.kamilu.kompozytor.propenums.Accidental.Brak;
-import static com.kamilu.kompozytor.propenums.Accidental.Krzyzyk;
+import static com.kamilu.kompozytor.propenums.Accidental.Flat;
+import static com.kamilu.kompozytor.propenums.Accidental.Natural;
+import static com.kamilu.kompozytor.propenums.Accidental.Sharp;
 
 public enum NotePitch {
-	fes0(50, Bemol), f0(50, Brak), fis0(50, Krzyzyk), //
-	ges0(45, Bemol), g0(45, Brak), gis0(45, Krzyzyk), //
-	as0(40, Bemol), a0(40, Brak), ais0(40, Krzyzyk), //
-	b0(35, Bemol), h0(35, Brak), his0(35, Krzyzyk), //
-	ces1(30, Bemol), c1(30, Brak), cis1(30, Krzyzyk), //
-	des1(25, Bemol), d1(25, Brak), dis1(25, Krzyzyk), //
-	es1(20, Bemol), e1(20, Brak), eis1(20, Krzyzyk), //
-	fes1(15, Bemol), f1(15, Brak), fis1(15, Krzyzyk), //
-	ges1(10, Bemol), g1(10, Brak), gis1(10, Krzyzyk), //
-	as1(5, Bemol), a1(5, Brak), ais1(5, Krzyzyk), //
-	b1(0, Bemol), h1(0, Brak), his1(0, Krzyzyk), //
-	ces2(-5, Bemol), c2(-5, Brak), cis2(-5, Krzyzyk), //
-	des2(-10, Bemol), d2(-10, Brak), dis2(-10, Krzyzyk), //
-	es2(-15, Bemol), e2(-15, Brak), eis2(-15, Krzyzyk), //
-	fes2(-20, Bemol), f2(-20, Brak), fis2(-20, Krzyzyk), //
-	ges2(-25, Bemol), g2(-25, Brak), gis2(-25, Krzyzyk), //
-	as2(-30, Bemol), a2(-30, Brak), ais2(-30, Krzyzyk), //
-	b2(-35, Bemol), h2(-35, Brak), his2(-35, Krzyzyk), //
-	ces3(-40, Bemol), c3(-40, Brak), cis3(-40, Krzyzyk), //
-	des3(-45, Bemol), d3(-45, Brak), dis3(-45, Krzyzyk), //
-	es3(-50, Bemol), e3(-50, Brak), eis3(-50, Krzyzyk), //
-//	WholeNotePause(0, Brak), HalfNotePause(0, Brak), //
-	Rest(26, Brak);
+	Pause(26, Natural), //
+	fes0(50, Flat), f0(50, Natural), fis0(50, Sharp), //
+	ges0(45, Flat), g0(45, Natural), gis0(45, Sharp), //
+	as0(40, Flat), a0(40, Natural), ais0(40, Sharp), //
+	b0(35, Flat), h0(35, Natural), his0(35, Sharp), //
+	ces1(30, Flat), c1(30, Natural), cis1(30, Sharp), //
+	des1(25, Flat), d1(25, Natural), dis1(25, Sharp), //
+	es1(20, Flat), e1(20, Natural), eis1(20, Sharp), //
+	fes1(15, Flat), f1(15, Natural), fis1(15, Sharp), //
+	ges1(10, Flat), g1(10, Natural), gis1(10, Sharp), //
+	as1(5, Flat), a1(5, Natural), ais1(5, Sharp), //
+	b1(0, Flat), h1(0, Natural), his1(0, Sharp), //
+	ces2(-5, Flat), c2(-5, Natural), cis2(-5, Sharp), //
+	des2(-10, Flat), d2(-10, Natural), dis2(-10, Sharp), //
+	es2(-15, Flat), e2(-15, Natural), eis2(-15, Sharp), //
+	fes2(-20, Flat), f2(-20, Natural), fis2(-20, Sharp), //
+	ges2(-25, Flat), g2(-25, Natural), gis2(-25, Sharp), //
+	as2(-30, Flat), a2(-30, Natural), ais2(-30, Sharp), //
+	b2(-35, Flat), h2(-35, Natural), his2(-35, Sharp), //
+	ces3(-40, Flat), c3(-40, Natural), cis3(-40, Sharp), //
+	des3(-45, Flat), d3(-45, Natural), dis3(-45, Sharp), //
+	es3(-50, Flat), e3(-50, Natural), eis3(-50, Sharp); //
 
-	private int yPos;
-	private Accidental znak;
+	private final int height;
+	private final Accidental accid;
 
-	private NotePitch(int yPos, Accidental accid) {
-		this.yPos = yPos;
-		this.znak = accid;
+	private NotePitch(int height, Accidental accid) {
+		this.height = height;
+		this.accid = accid;
 	}
 
-	public int getYPos() {
-		return yPos;
+	public int getHeight() {
+		return height;
 	}
 
 	public Accidental getAccid() {
-		return znak;
+		return accid;
 	}
 }

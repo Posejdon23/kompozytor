@@ -6,8 +6,26 @@
 	overflow: hidden;
 }
 
+@-webkit-keyframes v-notification-animate-out {
+		100% {
+		opacity: 0;
+	}
+	}
+
+@-moz-keyframes v-notification-animate-out {
+		100% {
+		opacity: 0;
+	}
+	}
+
+@keyframes v-notification-animate-out {
+		100% {
+		opacity: 0;
+	}
+	}
+
 .v-vaadin-version:after {
-	content: "7.2.2";
+	content: "7.3.0";
 }
 
 .v-generated-body {
@@ -22,306 +40,8 @@
 	overflow: hidden;
 }
 
-.v-debug-console {
-	background: #fff;
-	opacity: 0.9;
-	border: 1px solid #000;
-	font-family: sans-serif;
-}
-
-.v-debug-console-caption {
-	background: #000;
-	border-bottom: 1px solid grey;
-	color: white;
-	font-weight: bold;
-}
-
-.v-debug-console-content {
-	font-size: x-small;
-	overflow: auto;
-	white-space: pre;
-}
-
-.v-debug-console-content input {
-	font-size: xx-small;
-}
-
-.v-app .invalidlayout, .v-app .invalidlayout * {
-	background: #f99 !important;
-}
-
 @font-face {
-	font-family: "vdebugfont";
-	src: url(../base/debug/fonts/font.eot);
-	src: url(../base/debug/fonts/font.eot?#iefix) format("embedded-opentype"), url(../base/debug/fonts/font.woff) format("woff"), url(../base/debug/fonts/font.ttf) format("truetype"), url(../base/debug/fonts/font.svg#fontawesome) format("svg");
-	font-weight: normal;
-	font-style: normal;
-}
-
-.v-debugwindow [data-icon]:before, .v-debugwindow-menu [data-icon]:before {
-	font-family: "vdebugfont";
-	content: attr(data-icon);
-	speak: none;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1;
-	-webkit-font-smoothing: antialiased;
-	font-style: normal;
-	vertical-align: text-bottom;
-}
-
-.v-debugwindow {
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	-moz-opacity: 0.8;
-	-webkit-opacity: 0.8;
-	opacity: 0.8;
-	color: #666;
-	font-family: Arial, Helvetica, Tahoma, Verdana, sans-serif;
-	font-size: 13px;
-}
-
-.v-debugwindow .v-debugwindow-handle {
-	position: absolute;
-	bottom: 0;
-	background-color: #fff;
-	-moz-opacity: 0;
-	-webkit-opacity: 0;
-	opacity: 0;
-	z-index: 1000;
-}
-
-.v-debugwindow .v-debugwindow-handle-sw {
-	width: 7px;
-	height: 7px;
-}
-
-.v-debugwindow .v-debugwindow-handle-se {
-	right: 0;
-	width: 14px;
-	height: 14px;
-}
-
-.v-debugwindow:hover {
-	-moz-opacity: 1;
-	-webkit-opacity: 1;
-	opacity: 1;
-}
-
-.v-debugwindow * {
-	font-size: inherit !important;
-}
-
-.v-debugwindow-size0, .v-debugwindow-menu .v-debugwindow-button-size0 {
-	font-size: 10px;
-}
-
-.v-debugwindow-size1, .v-debugwindow-menu .v-debugwindow-button-size1 {
-	font-size: 13px;
-}
-
-.v-debugwindow-size2, .v-debugwindow-menu .v-debugwindow-button-size2 {
-	font-size: 16px;
-}
-
-.v-debugwindow-head {
-	text-align: right;
-	background-color: transparent;
-}
-
-.v-debugwindow-tabs {
-	display: inline-block;
-	background-color: #fff;
-}
-
-.v-debugwindow-tab, .v-debugwindow-controls > * {
-	width: 2em;
-	border: none;
-	margin: 0;
-	line-height: 1.5em;
-	background-color: #fff;
-	color: #666;
-}
-
-.v-debugwindow-tab {
-	position: relative;
-	top: 1px;
-	border-width: 1px 0 1px 1px;
-	border-style: solid;
-	border-color: #666;
-	border-radius: 2px 2px 0 0;
-}
-
-.v-debugwindow-tab-selected {
-	color: #666;
-	background-color: #fff;
-	border-bottom: 1px solid #fff;
-}
-
-.v-debugwindow-controls {
-	position: relative;
-	top: 1px;
-	display: inline-block;
-	background-color: #fff;
-	border: 1px solid #666;
-	border-radius: 2px 2px 0 0;
-}
-
-.v-debugwindow-section-head {
-	text-align: left;
-	background-color: #fff;
-	border: 1px solid #666;
-	border-bottom: 1px solid #999;
-	box-shadow: 0px 0px 7px 0 rgba(55, 55, 55, 0.6);
-	min-height: 1.5em;
-	line-height: 1.5em;
-	padding-left: 5px;
-}
-
-.v-debugwindow-button {
-	border: none;
-	background-color: transparent;
-	color: #666;
-}
-
-.v-debugwindow-button:hover {
-	color: #000;
-	text-decoration: underline;
-}
-
-.v-debugwindow-button-active {
-	color: #666;
-	box-shadow: 1px 1px 3px 0 inset;
-}
-
-.v-debugwindow-content {
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	box-shadow: 0px 0px 7px 0 rgba(55, 55, 55, 0.6);
-	background-color: #fff;
-	border: 1px solid #666;
-	border-top: none;
-}
-
-.v-debugwindow-menu {
-	background-color: #fff;
-	padding: 4px;
-	border: 1px solid #999;
-	border-top: none;
-	border-radius: 0 0 5px 5px;
-	box-shadow: 0px 0px 7px 0 rgba(55, 55, 55, 0.6);
-}
-
-.v-debugwindow-menu-content {
-	min-width: 100px;
-}
-
-.v-debugwindow-menu-content .v-debugwindow-button {
-	line-height: 22px;
-}
-
-.v-debugwindow-menu-content > div > .v-debugwindow-button {
-	width: 33%;
-}
-
-.v-debugwindow-row {
-	display: table-row;
-}
-
-.v-debugwindow-row:nth-child(odd) {
-	background-color: rgba(0, 61, 255, 0.11);
-}
-
-.v-debugwindow-row > span {
-	display: table-cell;
-	padding: 4px;
-}
-
-.v-debugwindow-row.SEVERE {
-	color: #550000;
-	background-color: #FFC5C5;
-}
-
-.v-debugwindow-row.WARNING {
-	background-color: #FFFF99;
-}
-
-.v-debugwindow-row.FINE {
-	color: #777;
-}
-
-.v-debugwindow-row.FINER {
-	color: #888;
-}
-
-.v-debugwindow-row.FINEST {
-	color: #888;
-}
-
-.v-debugwindow-row > span.caption {
-	color: #999;
-	text-align: right;
-	white-space: nowrap;
-}
-
-.v-debugwindow-row > span.value {
-	width: 100%;
-}
-
-.v-debugwindow-selector > span.value {
-	width: 100%;
-}
-
-.v-debugwindow-selector :hover {
-	background: rgba(255, 32, 32, 0.5);
-}
-
-.v-debugwindow-log {
-	font-family: monospace;
-}
-
-.v-debugwindow-log .v-debugwindow-reset {
-	color: #fff;
-	background-color: #4C92ED;
-	padding: 4px;
-}
-
-.v-debugwindow-log .v-debugwindow-time {
-	text-align: right;
-	color: #999;
-}
-
-.v-debugwindow-log .v-debugwindow-message {
-	white-space: nowrap;
-	width: 100%;
-}
-
-.v-debugwindow-log .v-debugwindow-message:hover {
-	white-space: normal;
-	word-wrap: break-word;
-}
-
-.v-debugwindow-log .v-debugwindow-message em {
-	background-color: #C4E6F8;
-}
-
-.v-debugwindow-hierarchy .v-debugwindow-info {
-	padding: 1em;
-}
-
-.v-debugwindow-network .v-debugwindow-row {
-	display: block !important;
-}
-
-.v-debugwindow-network .v-debugwindow-row > span {
-	display: inline;
-}
-
-@font-face {
-	font-family: "FontAwesome";
+	font-family: FontAwesome;
 	src: url(../base/fonts/fontawesome-webfont.eot);
 	src: url(../base/fonts/fontawesome-webfont.eot?#iefix) format("embedded-opentype"), url(../base/fonts/fontawesome-webfont.woff) format("woff"), url(../base/fonts/fontawesome-webfont.ttf) format("truetype"), url(../base/fonts/fontawesome-webfont.svg) format("svg");
 	font-weight: normal;
@@ -329,7 +49,7 @@
 }
 
 .FontAwesome {
-	font-family: "FontAwesome";
+	font-family: FontAwesome;
 	font-style: normal;
 	font-weight: normal;
 	-webkit-font-smoothing: antialiased;
@@ -1174,6 +894,14 @@
 	cursor: default;
 }
 
+.kompozytor .v-window {
+	box-shadow: 0 5px 18px 0 rgba(0, 0, 0, 0.5);
+}
+
+.kompozytor .v-datefield-popup, .kompozytor .v-filterselect-suggestpopup, .kompozytor .v-menubar-popup, .kompozytor .v-slider-feedback, .kompozytor .v-popupview-popup, .kompozytor .v-contextmenu {
+	box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.5);
+}
+
 body .kompozytor.v-app .v-app-loading {
 	background-image: url(../base/common/img/loading-indicator.gif);
 	background-repeat: no-repeat;
@@ -1246,6 +974,7 @@ body .kompozytor.v-app .v-app-loading {
 .kompozytor .v-tooltip {
 	cursor: default;
 	background: #fff;
+	box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.5);
 }
 
 .kompozytor .v-tooltip-text {
@@ -1266,6 +995,11 @@ body .kompozytor.v-app .v-app-loading {
 	padding: 0;
 	border: 0;
 	margin: 0;
+}
+
+.kompozytor .v-contextmenu .gwt-MenuBar {
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 .kompozytor .v-contextmenu .gwt-MenuItem div {
@@ -1697,6 +1431,10 @@ body .kompozytor.v-app .v-app-loading {
 	background: #fff;
 }
 
+.v-ie9 .kompozytor .v-datefield-popup, .v-ie10 .kompozytor .v-datefield-popup, .v-ie11 .kompozytor .v-datefield-popup {
+	box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
+}
+
 .kompozytor .v-datefield-popupcalendar input.v-datefield-textfield {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -1807,6 +1545,10 @@ body .kompozytor.v-app .v-app-loading {
 
 .kompozytor .v-inline-datefield-popup {
 	background: #fff;
+}
+
+.v-ie9 .kompozytor .v-inline-datefield-popup, .v-ie10 .kompozytor .v-inline-datefield-popup, .v-ie11 .kompozytor .v-inline-datefield-popup {
+	box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
 }
 
 .kompozytor .v-inline-datefield-popupcalendar input.v-inline-datefield-textfield {
@@ -2099,7 +1841,7 @@ body .kompozytor.v-app .v-app-loading {
 	width: 200px;
 }
 
-.kompozytor .v-app-loginpage .v-button, .kompozytor .v-app-loginpage .v-button {
+.kompozytor .v-app-loginpage .v-button {
 	float: left;
 }
 
@@ -2210,6 +1952,8 @@ body .kompozytor.v-app .v-app-loading {
 	overflow: hidden;
 	padding: 1em;
 	max-width: 85%;
+	opacity: 0.9;
+	filter: alpha(opacity=90);
 }
 
 .kompozytor .v-Notification h1, .kompozytor .v-Notification p, .kompozytor .v-Notification-error h1, .kompozytor .v-Notification-error p, .kompozytor .v-Notification-warning h1, .kompozytor .v-Notification-warning p {
@@ -2235,13 +1979,38 @@ body .kompozytor.v-app .v-app-loading {
 
 .kompozytor .v-Notification-system {
 	background-color: red;
-	opacity: 0.7;
-	filter: alpha(opacity=70);
 }
 
 .kompozytor .v-Notification-system h1 {
 	display: block;
 	margin: 0;
+}
+
+.kompozytor .v-Notification-animate-out {
+	-webkit-animation: v-notification-animate-out 400ms;
+	-moz-animation: v-notification-animate-out 400ms;
+	animation: v-notification-animate-out 400ms;
+}
+
+.kompozytor .v-Notification.v-position-top {
+	top: 0;
+}
+
+.kompozytor .v-Notification.v-position-right {
+	right: 0;
+}
+
+.kompozytor .v-Notification.v-position-bottom {
+	bottom: 0;
+}
+
+.kompozytor .v-Notification.v-position-left {
+	left: 0;
+}
+
+.kompozytor .v-Notification.v-position-assistive {
+	top: -9999px;
+	left: -9999px;
 }
 
 .kompozytor .v-orderedlayout, .kompozytor .v-horizontallayout, .kompozytor .v-verticallayout {
@@ -2574,6 +2343,12 @@ body .kompozytor.v-app .v-app-loading {
 
 .kompozytor .v-shadow {
 	position: absolute;
+	display: none;
+	pointer-events: none;
+}
+
+.v-ie8 .kompozytor .v-shadow {
+	display: block;
 }
 
 .kompozytor .v-shadow .top-left {
@@ -3658,6 +3433,12 @@ body .kompozytor.v-app .v-app-loading {
 
 .kompozytor .v-shadow-window {
 	position: absolute;
+	display: none;
+	pointer-events: none;
+}
+
+.v-ie8 .kompozytor .v-shadow-window {
+	display: block;
 }
 
 .kompozytor .v-shadow-window .top-left {
@@ -6798,10 +6579,10 @@ body .kompozytor.v-app .v-app-loading {
 
 .kompozytor .v-window {
 	background: transparent;
+	border: 1px solid #808386;
 }
 
 .kompozytor .v-window-wrap {
-	border: 1px solid #808386;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -6851,8 +6632,8 @@ body .kompozytor.v-app .v-app-loading {
 }
 
 .kompozytor .v-window-closebox {
-	top: 12px;
-	right: 10px;
+	top: 11px;
+	right: 9px;
 	width: 15px;
 	height: 16px;
 	background: transparent;
@@ -6868,8 +6649,8 @@ body .kompozytor.v-app .v-app-loading {
 }
 
 .kompozytor .v-window-maximizebox, .kompozytor .v-window-restorebox {
-	top: 12px;
-	right: 28px;
+	top: 11px;
+	right: 27px;
 	width: 15px;
 	height: 16px;
 	background: transparent;
@@ -6962,6 +6743,10 @@ body .kompozytor.v-app .v-app-loading {
 .kompozytor .v-window-light .v-window-wrap {
 	background: #f7f7f8 repeat-x;
 	background-image: url(../reindeer/window/img/light/content-bg.png);/** sprite-ref: verticals; sprite-alignment: repeat */
+}
+
+.kompozytor .v-window-black {
+	border-radius: 8px;
 }
 
 .kompozytor .v-window-black .v-window-wrap {

@@ -15,6 +15,11 @@ public class Song implements MusicObject {
 	public static final String NAME = "name";
 	public static final String AUTHOR = "author";
 	public static final String KEY = "Key";
+	private final Key key;
+	private String name;
+	private String author;
+	private List<Voice> voices;
+	private boolean markToRemove = false;
 
 	public static final ImmutableMap<String, Class<?>> PROPERTIES = new ImmutableMap.Builder<String, Class<?>>()
 			.put(KEY, Key.class)//
@@ -22,46 +27,71 @@ public class Song implements MusicObject {
 			.put(AUTHOR, String.class)//
 			.build();
 
-	private Entity song;
-	private List<Voice> voices;
-
 	public Song(Entity song) {
-		this.song = song;
-		// EntityUtils.printEntity(song);
-		loadVoices();
+		voices = new ArrayList<Voice>();
+		name = (String) song.getProperty(NAME);
+		author = (String) song.getProperty(AUTHOR);
+		markToRemove = (boolean) song.getProperty(TO_REMOVE);
+		key = song.getKey();
+		if (!markToRemove) {
+			loadVoices();
+		}
+	}
+
+	private void loadVoices() {
+		List<Entity> voiceEntities = DataStoreWrapper.getChildren(Voice.KIND,
+				Voice.SONG_ID, getKey());
+		for (Entity voiceEntity : voiceEntities) {
+			Voice voice = new Voice(voiceEntity);
+			if (!voice.isMarkedToRemove()) {
+				voices.add(voice);
+			}
+		}
+	}
+
+	public void persist() {
+		if (!markToRemove) {
+			Entity song = new Entity(key);
+			song.setProperty(NAME, name);
+			song.setUnindexedProperty(Song.AUTHOR, author);
+			song.setUnindexedProperty(TO_REMOVE, markToRemove);
+			DataStoreWrapper.save(song);
+		} else {
+			DataStoreWrapper.delete(key);
+		}
+		for (Voice voice : voices) {
+			voice.persist();
+		}
+	}
+
+	public boolean isMarkedToRemove() {
+		return markToRemove;
+	}
+
+	public void markToRemove() {
+		for (Voice voice : voices) {
+			voice.markToRemove();
+		}
+		markToRemove = true;
+		Entity song = new Entity(key);
+		song.setUnindexedProperty(TO_REMOVE, true);
+		DataStoreWrapper.save(song);
 	}
 
 	public List<Voice> getVoices() {
 		return voices;
 	}
 
-	public void loadVoices() {
-		voices = new ArrayList<Voice>();
-		List<Entity> voiceEntities = DataStoreWrapper.getChildren(Voice.KIND,
-				Voice.SONG_ID, getKey());
-		for (Entity voiceEntity : voiceEntities) {
-			Voice voice = new Voice(voiceEntity);
-			voices.add(voice);
-			voice.loadTacts();
-		}
+	public int getTactCount(int voiceIndex) {
+		return voices.get(0).getTacts().size();
+	}
+
+	public Voice getVoice(int index) {
+		return voices.get(index);
 	}
 
 	public Key getKey() {
-		return song.getKey();
-	}
-
-	public void save() {
-		DataStoreWrapper.save(song);
-		for (Voice voice : voices) {
-			voice.save();
-		}
-	}
-
-	public void deleteWithChildren() {
-		DataStoreWrapper.delete(song);
-		for (Voice voice : voices) {
-			voice.deleteWithChildren();
-		}
+		return key;
 	}
 
 	public void addVoice(Voice voice) {
@@ -69,26 +99,18 @@ public class Song implements MusicObject {
 	}
 
 	public String getName() {
-		return (String) song.getProperty(NAME);
+		return name;
 	}
 
 	public String getAuthor() {
-		return (String) song.getProperty(AUTHOR);
-	}
-
-	public Tact getLastTact() {
-		List<Tact> tacts = voices.get(0).getTacts();
-		return tacts.get(tacts.size() - 1);
+		return author;
 	}
 
 	public void setName(String name) {
-		song.setProperty(Song.NAME, name);
-		DataStoreWrapper.save(song);
+		this.name = name;
 	}
 
 	public void setAuthor(String author) {
-		song.setUnindexedProperty(Song.AUTHOR, author);
-		DataStoreWrapper.save(song);
-
+		this.author = author;
 	}
 }

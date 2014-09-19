@@ -12,9 +12,6 @@ import com.vaadin.ui.VerticalLayout;
 @SuppressWarnings("serial")
 @Theme("kompozytor")
 public class KompozytorUI extends UI {
-
-	public static final String MENU_CLEAR = "menuClear";
-	public static final String MENU_SELECTED = "menuSelected";
 	private VerticalLayout mainLayout;
 
 	@Override

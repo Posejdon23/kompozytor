@@ -1,13 +1,16 @@
 package com.kamilu.kompozytor.components;
 
+import static com.vaadin.server.Sizeable.Unit.*;
 import static com.vaadin.ui.Notification.Type.*;
 
+import java.awt.Checkbox;
 import java.util.Arrays;
 import java.util.List;
 
-import com.kamilu.kompozytor.drawers.SongDrawer;
+import com.kamilu.kompozytor.drawers.TactDrawer;
 import com.kamilu.kompozytor.entities.Song;
 import com.kamilu.kompozytor.entities.Tact;
+import com.kamilu.kompozytor.entities.Voice;
 import com.kamilu.kompozytor.propenums.Clef;
 import com.kamilu.kompozytor.propenums.Tonation;
 import com.kamilu.kompozytor.utils.TactFactory;
@@ -20,19 +23,23 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 
 @SuppressWarnings("serial")
-public class TactMenu extends HorizontalLayout {
+public class TactMenu extends VerticalLayout {
 
 	private Song song;
 	private Button newTact;
 	private Button removeTact;
-	private SongDrawer songDrawer;
+	private TactDrawer tactDrawer;
 	private ComboBox clefs;
 	private ComboBox tonations;
 	private TextField tempo;
+	private CompositorEditor editor;
+	private CheckBox repeatStart, repeatEnd;
+	private Slider repeatCount;
 
-	public TactMenu(Song song, SongDrawer songDrawer) {
+	public TactMenu(Song song, CompositorEditor editor) {
 		this.song = song;
-		this.songDrawer = songDrawer;
+		this.editor = editor;
+		this.tactDrawer = editor.getTactDrawer();
 		newTact = new Button("Dodaj Takt");
 		removeTact = new Button("Usuñ Takt");
 		clefs = new ComboBox("Klucz", Arrays.asList(Clef.values()));
@@ -41,33 +48,25 @@ public class TactMenu extends HorizontalLayout {
 		tempo.addValueChangeListener(new ChangeTempo());
 		clefs.setNullSelectionAllowed(false);
 		tonations.setNullSelectionAllowed(false);
-		clefs.select(Clef.Wiolinowy.name());
+		clefs.select(Clef.Violin.name());
 		tonations.select(Tonation.C_dur.name());
 		clefs.addValueChangeListener(new ChangeClef());
 		tonations.addBlurListener(new ChangeTonation());
-		setSpacing(true);
-		setMargin(true);
-		addComponents(newTact, removeTact, clefs, tonations, tempo);
-		newTact.addClickListener(insertTactList);
-		removeTact.addClickListener(deleteTaktList);
+		repeatStart = new CheckBox("Pocz¹tek powtórki", false);
+		repeatEnd = new CheckBox("Koniec powtórki", false);
+		repeatCount = new Slider(1, 100, 0);
+		repeatCount.setCaption("Liczba powtórzeñ");
+		repeatCount.setWidth(150, PIXELS);
+		repeatCount.setValue(1D);
+		addComponents(newTact, removeTact, clefs, tonations, tempo,
+				repeatStart, repeatEnd, repeatCount);
+		newTact.addClickListener(new InsertTact());
+		removeTact.addClickListener(new DeleteTact());
 	}
 
-	// TODO jeœli getSelectedTact coœ zwróci to lastTact trzeba zmieniæ
-	private Button.ClickListener insertTactList = new ClickListener() {
+	private final class DeleteTact implements ClickListener {
 		public void buttonClick(ClickEvent event) {
-			Tact lastTact = song.getLastTact();
-			int index = songDrawer.getSelectedTact();
-			if (index == -1) {
-				index = lastTact.getOrderNumber();
-			}
-			song.getVoices().get(0)
-					.addTact(index, TactFactory.createNewTact(lastTact));
-			songDrawer.drawSong(song);
-		}
-	};
-	private Button.ClickListener deleteTaktList = new ClickListener() {
-		public void buttonClick(ClickEvent event) {
-			int index = songDrawer.getSelectedTact();
+			int index = tactDrawer.getSelectedTactIndex();
 			if (index == 0) {
 				Notification.show("Nie mo¿esz usun¹æ pierwszego taktu",
 						WARNING_MESSAGE);
@@ -78,64 +77,83 @@ public class TactMenu extends HorizontalLayout {
 				return;
 			}
 			song.getVoices().get(0).removeTact(index);
-			songDrawer.drawSong(song);
+			drawSong();
 		}
-	};
+	}
+
+	private final class InsertTact implements ClickListener {
+		public void buttonClick(ClickEvent event) {
+			int index = tactDrawer.getSelectedTactIndex();
+			if (index == -1) {
+				index = song.getTactCount(0) - 1;
+			}
+			Tact tact = song.getVoice(0).getTact(index);
+			song.getVoices().get(0)
+					.addTact(index + 1, TactFactory.createNewTact(tact));
+			drawSong();
+		}
+	}
 
 	private final class ChangeTempo implements ValueChangeListener {
 		@Override
 		public void valueChange(ValueChangeEvent event) {
-			int index = songDrawer.getSelectedTact();
+			int index = tactDrawer.getSelectedTactIndex();
 			int tempoValue = Integer.parseInt(tempo.getValue());
 			song.getVoices().get(0).getTact(index).setTempo(tempoValue);
 			List<Tact> tacts = song.getVoices().get(0).getTacts();
 			Tact selectedTact = tacts.get(index);
 			for (Tact tact : tacts) {
-				if (tact.getOrderNumber() >= selectedTact.getOrderNumber()) {
+				if (tact.getNumber() >= selectedTact.getNumber()) {
 					tact.setTempo(tempoValue);
 				}
 			}
-			songDrawer.drawSong(song);
+			drawSong();
 		}
 	}
 
 	private final class ChangeClef implements ValueChangeListener {
 		@Override
 		public void valueChange(ValueChangeEvent event) {
-			int index = songDrawer.getSelectedTact();
+			int index = tactDrawer.getSelectedTactIndex();
 			if (index == -1) {
 				Notification.show("Zaznacz takt");
 				return;
 			}
-			List<Tact> tacts = song.getVoices().get(0).getTacts();
+			List<Voice> voices = song.getVoices();
+			Voice voice = voices.get(0);
+			List<Tact> tacts = voice.getTacts();
 			Tact selectedTact = tacts.get(index);
-			String clef = ((Clef) clefs.getValue()).name();
+			Clef clef = ((Clef) clefs.getValue());
 			for (Tact tact : tacts) {
-				if (tact.getOrderNumber() >= selectedTact.getOrderNumber()) {
+				if (tact.getNumber() >= selectedTact.getNumber()) {
 					tact.setClef(clef);
 				}
 			}
-			songDrawer.drawSong(song);
+			drawSong();
 		}
 	}
 
 	final class ChangeTonation implements BlurListener {
 		@Override
 		public void blur(BlurEvent event) {
-			int index = songDrawer.getSelectedTact();
+			int index = tactDrawer.getSelectedTactIndex();
 			if (index == -1) {
 				Notification.show("Zaznacz takt");
 				return;
 			}
 			List<Tact> tacts = song.getVoices().get(0).getTacts();
 			Tact selectedTact = tacts.get(index);
-			String tonation = ((Tonation) tonations.getValue()).name();
+			Tonation tonation = ((Tonation) tonations.getValue());
 			for (Tact tact : tacts) {
-				if (tact.getOrderNumber() >= selectedTact.getOrderNumber()) {
+				if (tact.getNumber() >= selectedTact.getNumber()) {
 					tact.setTonation(tonation);
 				}
 			}
-			songDrawer.drawSong(song);
+			drawSong();
 		}
+	}
+
+	public void drawSong() {
+		editor.drawSong();
 	}
 }

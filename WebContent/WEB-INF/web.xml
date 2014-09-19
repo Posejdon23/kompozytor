@@ -18,9 +18,8 @@
 			<param-value>com.kamilu.kompozytor.KompozytorUI</param-value>
 		</init-param>
 		<init-param>
-			<description>Applicationwidgetset</description>
 			<param-name>widgetset</param-name>
-			<param-value>com.kamilu.kompozytor.widgetset.KompozytorWidgetset</param-value>
+			<param-value>com.kamilu.kompozytor.mycomponent.DrawingCanvasWidgetset</param-value>
 		</init-param>
 	</servlet>
 	<servlet-mapping>

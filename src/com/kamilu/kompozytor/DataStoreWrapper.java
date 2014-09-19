@@ -18,8 +18,6 @@ public class DataStoreWrapper {
 			return DatastoreServiceFactory.getDatastoreService().get(
 					KeyFactory.createKey(kind, id));
 		} catch (EntityNotFoundException e) {
-			System.err.println("EntityNotFoundException"
-					+ e.getLocalizedMessage());
 			return null;
 		}
 	}
@@ -43,8 +41,8 @@ public class DataStoreWrapper {
 		DatastoreServiceFactory.getDatastoreService().delete(entity.getKey());
 	}
 
-	public static void delete(Entity entity) {
-		DatastoreServiceFactory.getDatastoreService().delete(entity.getKey());
+	public static void delete(Key key) {
+		DatastoreServiceFactory.getDatastoreService().delete(key);
 	}
 
 	public static List<Entity> getChildren(String kind, String columnIdName,
@@ -65,7 +63,7 @@ public class DataStoreWrapper {
 				.prepare(new Query(kind)).asList(withDefaults());
 	}
 
-	public static List<Entity> getChildrenWithSortColumn(String kind,
+	public static List<Entity> getChildrenWithOrderColumn(String kind,
 			String columnIdName, Key parentKey, String orderColumnName) {
 		DatastoreService datastore = DatastoreServiceFactory
 				.getDatastoreService();
