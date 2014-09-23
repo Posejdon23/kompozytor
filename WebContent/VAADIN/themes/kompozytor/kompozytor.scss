@@ -1,8 +1,8 @@
-@import "../reindeer/reindeer.scss";
-/* @import "../valo/valo.scss"; */
+/* @import "../reindeer/reindeer.scss"; */
+@import "../valo/valo.scss";
 @mixin kompozytor { 
 
-@include reindeer; 
+@include valo; 
 
 .mainLayout {
 	/* 	background:url('../img/grassbackOp.jpg'); */
