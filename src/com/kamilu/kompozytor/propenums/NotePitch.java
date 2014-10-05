@@ -5,7 +5,7 @@ import static com.kamilu.kompozytor.propenums.Accidental.Natural;
 import static com.kamilu.kompozytor.propenums.Accidental.Sharp;
 
 public enum NotePitch {
-	Pause(26, Natural), //
+	Pause(0, Natural), //
 	fes0(50, Flat), f0(50, Natural), fis0(50, Sharp), //
 	ges0(45, Flat), g0(45, Natural), gis0(45, Sharp), //
 	as0(40, Flat), a0(40, Natural), ais0(40, Sharp), //

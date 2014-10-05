@@ -7,15 +7,14 @@ import com.kamilu.kompozytor.mycomponent.DrawingCanvas;
 public class VoiceDrawer implements Drawer {
 
 	private final DrawingCanvas canvas;
-	private final DrawCursor cursor;
 
-	public VoiceDrawer(DrawCursor cursor) {
-		this.cursor = cursor;
-		this.canvas = cursor.getCanvas();
+	public VoiceDrawer(DrawingCanvas canvas) {
+		this.canvas = canvas;
 	}
 
 	public void drawVoice(Voice voice) {
-		cursor.drawStave();
+		canvas.drawStave();
+		// TODO rysowanie tekstu
 		// canvas.fillText(voice.getInstrument().name() + voice.getNumber(), 50,
 		// 50, 100);
 	}

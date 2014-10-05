@@ -6,8 +6,16 @@ public interface DrawingCanvasClientRpc extends ClientRpc {
 
 	// public void alert(String message);
 
-	public void add(String vo);
+	void drawObject(int y, int width, int height, String url);
 
-	public void remove(String vo);
+	void remove(String object);
+
+	void setHeight(int height);
+
+	void drawStave();
+
+	void setWidth(int width);
+
+	void drawTactBar(int number);
 
 }

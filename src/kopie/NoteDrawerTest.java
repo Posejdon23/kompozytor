@@ -35,8 +35,6 @@ public class NoteDrawerTest {
 	private Note sixteenthNote;
 	@Mock
 	private DrawingCanvas canvas;
-	@Mock
-	private DrawCursor drawCursor;
 
 	@Before
 	public void setUp() throws Exception {
@@ -56,7 +54,7 @@ public class NoteDrawerTest {
 	public void testGroupOfNotes() throws Exception {
 		// when
 		Metrum metrum = Metrum.Common;
-		NoteDrawer noteDrawer = new NoteDrawer(canvas, drawCursor);
+		NoteDrawer noteDrawer = new NoteDrawer(canvas);
 		List<Note> notes = new ArrayList<Note>();
 		notes.add(halfNote);
 		notes.add(quarterNote);

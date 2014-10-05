@@ -1,22 +1,30 @@
 package com.kamilu.kompozytor.propenums;
 
 public enum Clef {
-	Violin("http://oi58.tinypic.com/2vla0it.jpg", 60), Bass(
-			"http://s8.tinypic.com/34ef57c_th.jpg", 18);
+	Violin(18,
+			52, //
+			"https://dl-web.dropbox.com/get/violinKey.svg?_subject_uid=338188398&w=AACIl7Zpy4r66EYKFhxveqkm7D2gh6BGS5ciELLksa7bVQ"), //
+	Bass(0, 0, //
+			"");
 
 	private final String url;
-	private final int height;
+	private final int width, height;
 
-	private Clef(String url, int height) {
+	private Clef(int width, int height, String url) {
 		this.url = url;
+		this.width = width;
 		this.height = height;
 	}
 
-	public String getUrl() {
-		return url;
+	public int getWidth() {
+		return width;
 	}
 
 	public int getHeight() {
 		return height;
+	}
+
+	public String getUrl() {
+		return url;
 	}
 }

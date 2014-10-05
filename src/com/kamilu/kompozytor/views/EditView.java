@@ -3,6 +3,7 @@ package com.kamilu.kompozytor.views;
 import static com.vaadin.ui.Alignment.*;
 
 import com.google.appengine.api.datastore.Entity;
+import com.google.gwt.dev.shell.BrowserChannel.SessionHandler;
 import com.kamilu.kompozytor.DataStoreWrapper;
 import com.kamilu.kompozytor.components.CompositorEditor;
 import com.kamilu.kompozytor.entities.Song;
@@ -27,10 +28,9 @@ public class EditView extends VerticalLayout implements View {
 	public EditView() {
 		name = new TextField("Nazwa");
 		author = new TextField("Autor");
-		create = new Button("Stwórz");
-		cancel = new Button("Anuluj");
+		create = new Button("Stwórz", new NavigateToNewSong());
+		cancel = new Button("Anuluj", new NavigateToMain());
 		butLay = new HorizontalLayout(create, cancel);
-		prepareListeners();
 	}
 
 	@Override
@@ -55,24 +55,21 @@ public class EditView extends VerticalLayout implements View {
 		}
 	}
 
-	private void prepareListeners() {
-		create.addClickListener(new ClickListener() {
-			@Override
-			public void buttonClick(ClickEvent event) {
-				removeAllComponents();
-				Song song = SongFactory.createNewSong(name.getValue(),
-						author.getValue());
-				getUI().getNavigator().navigateTo(
-						VIEW + "/" + song.getKey().getId());
-			}
-		});
-		cancel.addClickListener(new ClickListener() {
-
-			@Override
-			public void buttonClick(ClickEvent event) {
-				getUI().getNavigator().navigateTo(MainView.VIEW);
-			}
-		});
+	private final class NavigateToMain implements ClickListener {
+		@Override
+		public void buttonClick(ClickEvent event) {
+			getUI().getNavigator().navigateTo(MainView.VIEW);
+		}
 	}
 
+	private final class NavigateToNewSong implements ClickListener {
+		@Override
+		public void buttonClick(final ClickEvent event) {
+			removeAllComponents();
+			final Song song = SongFactory.createNewSong(name.getValue(),
+					author.getValue());
+			getUI().getNavigator().navigateTo(
+					VIEW + "/" + song.getKey().getId());
+		}
+	}
 }

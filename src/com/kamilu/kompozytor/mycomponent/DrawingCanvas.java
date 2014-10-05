@@ -8,6 +8,35 @@ import com.vaadin.ui.AbstractComponent;
 @SuppressWarnings("serial")
 public class DrawingCanvas extends AbstractComponent {
 
+	public DrawingCanvas() {
+		registerRpc(rpc);
+	}
+
+	@Override
+	public DrawingCanvasState getState() {
+		return (DrawingCanvasState) super.getState();
+	}
+
+	public void drawObject(int y, int width, int height, String url) {
+		rpc.drawObject(y, width, height, url);
+	}
+
+	public void remove(String vo) {
+		rpc.remove(vo);
+	}
+
+	public void drawStave() {
+		rpc.drawStave();
+	}
+
+	public void setHeight(int height) {
+		getRpcProxy(DrawingCanvasClientRpc.class).setHeight(height);
+	}
+
+	public float getHeight() {
+		return getState().wys;
+	}
+
 	private DrawingCanvasServerRpc rpc = new DrawingCanvasServerRpc() {
 		// private int clickCount = 0;
 
@@ -18,30 +47,38 @@ public class DrawingCanvas extends AbstractComponent {
 		// }
 
 		@Override
-		public void add(String vo) {
-			getRpcProxy(DrawingCanvasClientRpc.class).add(vo);
+		public void drawObject(int y, int width, int height, String url) {
+			getRpcProxy(DrawingCanvasClientRpc.class).drawObject(y, width, height,
+					url);
 		}
 
 		@Override
 		public void remove(String vo) {
 			getRpcProxy(DrawingCanvasClientRpc.class).remove(vo);
 		}
+
+		@Override
+		public void setHeight(int height) {
+			getRpcProxy(DrawingCanvasClientRpc.class).setHeight(height);
+		}
+
+		@Override
+		public void setWidth(int width) {
+			getRpcProxy(DrawingCanvasClientRpc.class).setWidth(width);
+		}
+
+		@Override
+		public void drawStave() {
+			getRpcProxy(DrawingCanvasClientRpc.class).drawStave();
+		}
 	};
 
-	public DrawingCanvas() {
-		registerRpc(rpc);
+	public void drawTactBar(int number) {
+		getRpcProxy(DrawingCanvasClientRpc.class).drawTactBar(number);
 	}
 
-	@Override
-	public DrawingCanvasState getState() {
-		return (DrawingCanvasState) super.getState();
+	public void moveRight(int distance) {
+		getState().setX(getState().getX() + distance);
 	}
 
-	public void add(String vo) {
-		rpc.add(vo);
-	}
-
-	public void remove(String vo) {
-		rpc.remove(vo);
-	}
 }

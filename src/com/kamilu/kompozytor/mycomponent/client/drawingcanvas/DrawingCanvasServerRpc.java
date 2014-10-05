@@ -6,8 +6,14 @@ public interface DrawingCanvasServerRpc extends ServerRpc {
 
 	// public void clicked(MouseEventDetails mouseDetails);
 
-	public void add(String vo);
+	void drawObject(int y, int width, int height, String url);
 
-	public void remove(String vo);
+	void remove(String vo);
+
+	void setHeight(int height);
+
+	void setWidth(int width);
+
+	void drawStave();
 
 }
