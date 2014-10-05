@@ -1,0 +1,1 @@
+$wnd.com_kamilu_kompozytor_mycomponent_DrawingCanvasWidgetset.runAsyncCallback2('G9(1177,1,rod);_.rc=function W2b(){PTb((!JTb&&(JTb=new QTb),JTb),this.b.e)};Did(Vh)(2);\n//# sourceURL=com.kamilu.kompozytor.mycomponent.DrawingCanvasWidgetset-2.js\n')
